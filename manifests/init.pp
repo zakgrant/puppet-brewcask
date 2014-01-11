@@ -1,11 +1,9 @@
 class brewcask {
   require homebrew
 
-  homebrew::tap { 'homebrew-cask':
-    source => 'phinze/homebrew-cask',
-  }
+  homebrew::tap { 'phinze/cask': }
 
   package { 'brew-cask':
-    require => Homebrew_Tap['phinze/homebrew-cask'],
+    require => Homebrew_Tap['phinze/cask'],
   }
 }
