@@ -100,14 +100,6 @@ Puppet::Type.type(:package).provide :brewcask,
     Facter.value(:boxen_user) || Facter.value(:id) || "root"
   end
 
-  def s3_host
-    Facter.value(:boxen_s3_host) || 's3.amazonaws.com'
-  end
-
-  def s3_bucket
-    Facter.value(:boxen_s3_bucket) || 'boxen-downloads'
-  end
-
   def command_opts
     @command_opts ||= {
       :combine               => true,
@@ -117,8 +109,6 @@ Puppet::Type.type(:package).provide :brewcask,
         "CFLAGS"             => "-O2",
         "CPPFLAGS"           => "-O2",
         "CXXFLAGS"           => "-O2",
-        "BOXEN_S3_HOST"      => "#{s3_host}",
-        "BOXEN_S3_BUCKET"    => "#{s3_bucket}",
         "HOMEBREW_ROOT"      => self.class.home,
         "HOMEBREW_CACHE"     => "#{self.class.home}/../cache/homebrew",
         "HOMEBREW_CASK_OPTS" => "--caskroom=#{self.class.caskroom_home}",
